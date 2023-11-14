@@ -1,31 +1,31 @@
 <?php
 use Firebase\JWT\JWT;
 
-// Define functions for user management
-function generateToken($userId)
-    {
-        $key = 'abcdefghijklmnopqrst'; // Replace with a secure, random key
-        $payload = [
-            'user_id' => $userId,
-            'exp' => time() + (60 * 60), // Token expiration time (1 hour)
-        ];
+    // Define functions for user management
+    function generateToken($userId)
+        {
+            $key = 'abcdefghijklmnopqrst'; // Replace with a secure, random key
+            $payload = [
+                'user_id' => $userId,
+                'exp' => time() + (60 * 60), // Token expiration time (1 hour)
+            ];
 
-        return JWT::encode($payload, $key, 'HS256');
-    }
-   
-function decodeToken($token)
-    {
-        $key = 'abcdefghijklmnopqrst'; // Replace with the same key used for encoding
-
-        try {
-            return (array) JWT::decode($token, $key, ['HS256']);
-        } catch (Exception $e) {
-            return null;
+            return JWT::encode($payload, $key, 'HS256');
         }
-    }
+    
+    function decodeToken($token)
+        {
+            $key = 'abcdefghijklmnopqrst'; // Replace with the same key used for encoding
+            try {
+                return (array) JWT::decode($token, $key, ['HS256']);
+            } 
+            catch (Exception $e) {
+                return null;
+            }
+        }
 
 
-function registerUser($data)
+function registerUser($data)    
 {
     global $conn;
 

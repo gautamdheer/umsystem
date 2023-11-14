@@ -7,7 +7,7 @@
 </head>
 <body>
     <div class="container">
-        <h1>Welcome to User Management System</h1>
+       <?php echo phpinfo(); ?>
     </div>
 </body>
 </html>
